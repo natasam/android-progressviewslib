@@ -26,6 +26,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 
+import com.natasa.progressviews.utils.ColorsHelper;
 import com.natasa.progressviews.utils.ProgressStartPoint;
 import com.natasa.progressviews.utils.ShapeType;
 
@@ -38,6 +39,7 @@ public class ArcProgressBar extends ProgressView {
 	private RectF oval;
 	private float top;
 	private float bottom;
+	private boolean isGradientColor;
 
 	public ArcProgressBar(Context context) {
 		super(context);
@@ -63,11 +65,16 @@ public class ArcProgressBar extends ProgressView {
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 		canvas.drawArc(oval, START_ANGLE, START_ANGLE, false, backgroundPaint);
+		setLinearGradientPaint();
 
-		// ColorsHelper.setGradientPaint(foregroundPaint, left,top, right, top);
 
 		float angle = START_ANGLE * progress / maximum_progress;
 		canvas.drawArc(oval, START_ANGLE, angle, false, foregroundPaint);
+	}
+
+	private void setLinearGradientPaint() {
+		if (isGradientColor)
+			ColorsHelper.setGradientPaint(foregroundPaint, left, top, right, top);
 	}
 
 	@Override
@@ -87,6 +94,9 @@ public class ArcProgressBar extends ProgressView {
 		invalidate();
 	}
 
+	public void setLinearGradientProgress(boolean isGradientColor) {
+		this.isGradientColor = isGradientColor;
+	}
 	public int getPadding() {
 		return PADDING;
 	}

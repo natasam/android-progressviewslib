@@ -179,22 +179,26 @@ abstract class ProgressView extends View implements ProgressShape {
 	}
 
 	// ********************PROGRESS WIDTH**********************************
-	public float getProgressBarWidth() {
+	public void setWidth(int circleWidth) {
+		width = circleWidth;
+	}
+
+	public float getWidthProgressBarLine() {
 		return strokeWidth;
 	}
 
-	public void setProgressBarWidth(float strokeWidth) {
+	public void setWidthProgressBarLine(float strokeWidth) {
 		this.strokeWidth = strokeWidth;
 		foregroundPaint.setStrokeWidth(strokeWidth);
 		invalidate();
 		requestLayout();
 	}
 
-	public float getBackgroundProgressBarWidth() {
+	public float getWidthProgressBackground() {
 		return backgroundStrokeWidth;
 	}
 
-	public void setBackgroundProgressBarWidth(float backgroundStrokeWidth) {
+	public void setWidthProgressBackground(float backgroundStrokeWidth) {
 		this.backgroundStrokeWidth = backgroundStrokeWidth;
 		backgroundPaint.setStrokeWidth(strokeWidth);
 		invalidate();
@@ -280,8 +284,7 @@ abstract class ProgressView extends View implements ProgressShape {
 	private void convertStringToIntColor(String hexColor) {
 		if(hexColor!=null) {
 			try {
-				int color = Color.parseColor(hexColor);
-				this.shaderColor = color;
+				this.shaderColor = Color.parseColor(hexColor);
 
 			}catch (Exception e){e.printStackTrace();}
 
@@ -324,9 +327,9 @@ abstract class ProgressView extends View implements ProgressShape {
 	 * <i>Duration is set by default value (1000 ms).</i> For Animation duration
 	 * change use <br>setProgressIndeterminateAnimation(int animSpeedMillisec)</br>
 	 */
-	public void setProgressIndeterminateAnimation() {
-		setProgressIndeterminateAnimation(1000);
-	}
+	//public void setProgressIndeterminateAnimation() {
+	//setProgressIndeterminateAnimation(1000);
+	//}
 
 	/**
 	 * ProgressBar with indeterminate mode with an infinite looping animation.

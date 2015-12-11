@@ -42,6 +42,8 @@ public class CircleProgressBar extends ProgressView {
 	private float angle;
 	private int radius;
 	private boolean isGradientColor;
+	private boolean isSweepGradientColor;
+	private int colorStart, colorEnd;
 
 	public CircleProgressBar(Context context) {
 		super(context);
@@ -90,6 +92,9 @@ public class CircleProgressBar extends ProgressView {
 		if(isGradientColor){
 			setLinearGradientProgress(gradColors);
 		}
+		if (isSweepGradientColor) {
+			setSweepGradPaint();
+		}
 	}
 
 	public void setLinearGradientProgress(boolean isGradientColor){
@@ -100,11 +105,26 @@ public class CircleProgressBar extends ProgressView {
 		gradColors=colors;
 
 	}
+
+	public void setSweepGradientProgress(boolean isGradientColor, int colorStart, int colorEnd) {
+		this.isSweepGradientColor = isGradientColor;
+		this.colorStart = colorStart;
+		this.colorEnd = colorEnd;
+
+
+	}
+
+	private void setSweepGradPaint() {
+		if (colorStart != 0 && colorEnd != 0) {
+			ColorsHelper.setSweepGradientPaint(foregroundPaint, min / 2, min / 2, colorStart, colorEnd);
+		}
+	}
+
 	private void setLinearGradientProgress(int[] gradColors) {
 		if(gradColors!=null)
-		colorHelper.setGradientPaint(foregroundPaint, left, top, right, bottom,gradColors);
+			ColorsHelper.setGradientPaint(foregroundPaint, left, top, right, bottom,gradColors);
 		else
-			colorHelper.setGradientPaint(foregroundPaint, left, top, right, bottom);
+			ColorsHelper.setGradientPaint(foregroundPaint, left, top, right, bottom);
 
 	}
 

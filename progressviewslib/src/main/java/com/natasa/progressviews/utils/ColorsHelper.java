@@ -10,6 +10,7 @@ import android.graphics.RadialGradient;
 import android.graphics.Rect;
 import android.graphics.Paint.Style;
 import android.graphics.Shader.TileMode;
+import android.graphics.SweepGradient;
 
 public class ColorsHelper {
 	static int[] colors2 = { Color.parseColor("#fb0000"),
@@ -43,16 +44,15 @@ public class ColorsHelper {
 		paint.setAntiAlias(true);
 	}
 
-	public static void setRadialGradientPaint(Paint paint, float left,
-			float top, float width) {
-		setRadialGradientPaint(paint, left, top, width, colors2);
+	public static void setSweepGradientPaint(Paint paint, float width,
+											 float height, int colorStart, int colorEnd) {
+		setSweepGradientGradientPaint(paint, width, height, colorStart, colorEnd);
 	}
 
-	protected static void setRadialGradientPaint(Paint paint, float left,
-			float top, float width, int[] colors2) {
-		RadialGradient linearGradient = new RadialGradient(left, top, width,
-				colors2, null, TileMode.CLAMP);
-		paint.setShader(linearGradient);
+	protected static void setSweepGradientGradientPaint(Paint paint, float width,
+														float height, int colorStart, int colorEnd) {
+		//SweepGradient sweepGradient = new SweepGradient(width,height,colorStart,colorEnd, TileMode.CLAMP);
+		paint.setShader(new SweepGradient(width, height, colorStart, colorEnd));
 		paint.setAntiAlias(true);
 	}
 
