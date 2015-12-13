@@ -30,6 +30,7 @@ import android.graphics.Paint;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 
 import com.natasa.progressviews.utils.OnProgressViewListener;
@@ -176,7 +177,9 @@ abstract class ProgressView extends View implements ProgressShape {
 
 	// ********************PROGRESS WIDTH**********************************
 	public void setWidth(int circleWidth) {
-		width = circleWidth;
+		ViewGroup.LayoutParams params= this.getLayoutParams();
+		params.width=circleWidth;
+		requestLayout();
 	}
 
 	public float getWidthProgressBarLine() {
