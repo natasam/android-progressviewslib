@@ -81,15 +81,15 @@ public class LineProgressBar extends ProgressView {
 
 	private void drawLineProgressVertical(Canvas canvas) {
 		int nMiddle = width / 2;
+		float progressY = (height / maximum_progress) * maximum_progress;
 
-		canvas.drawLine(nMiddle, 0, nMiddle, height, backgroundPaint);
+		canvas.drawLine(nMiddle, height-progressY, nMiddle, height, backgroundPaint);
 
 		float progressX = (height / maximum_progress) * progress;
 		canvas.drawLine(nMiddle, height, nMiddle, height - progressX,
 				foregroundPaint);
 
 	}
-
 
 
 	private void drawLineProgress(Canvas canvas) {

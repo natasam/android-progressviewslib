@@ -6,14 +6,14 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
-import android.graphics.RadialGradient;
 import android.graphics.Rect;
 import android.graphics.Paint.Style;
 import android.graphics.Shader.TileMode;
 import android.graphics.SweepGradient;
 
  class ColorsHelper {
-	static int[] colors2 = { Color.parseColor("#fb0000"),
+	 public static final float padding = 2f;
+	 static int[] colors2 = { Color.parseColor("#fb0000"),
 			Color.parseColor("#fbf400"), Color.parseColor("#00FF00") };
 	private boolean isAllowedMatchParent;
 	static int[] colors1;
@@ -51,7 +51,6 @@ import android.graphics.SweepGradient;
 
 	protected static void setSweepGradientGradientPaint(Paint paint, float width,
 														float height, int colorStart, int colorEnd) {
-		//SweepGradient sweepGradient = new SweepGradient(width,height,colorStart,colorEnd, TileMode.CLAMP);
 		paint.setShader(new SweepGradient(width, height, colorStart, colorEnd));
 		paint.setAntiAlias(true);
 	}
@@ -61,7 +60,6 @@ import android.graphics.SweepGradient;
 	public  void drawTextCenter(Canvas canvas, String text, int color,
 			int min) {
 		Paint innerPaint = new Paint();
-		// innerPaint.setARGB(255, 117, 161, 220); // blue
 		innerPaint.setAntiAlias(true);
 		innerPaint.setStyle(Style.FILL);
 		innerPaint.setColor(color);
@@ -72,8 +70,8 @@ import android.graphics.SweepGradient;
 		// setTextMatchParent(text,innerPaint,width-strokeWidth*2-25);
 		innerPaint.setTextAlign(Paint.Align.LEFT);
 		innerPaint.getTextBounds(text, 0, text.length(), r);
-		float x = min / 2f - r.width() / 2f - r.left;
-		float y = min / 2f + r.height() / 2f - r.bottom;
+		float x = min / padding - r.width() / padding - r.left;
+		float y = min / padding + r.height() / padding - r.bottom;
 
 		canvas.drawText(text, x, y, innerPaint);
 	}
