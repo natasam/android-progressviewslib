@@ -22,12 +22,9 @@ package com.natasa.progressviews;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 
-import com.natasa.progressviews.utils.ColorsHelper;
-import com.natasa.progressviews.utils.ProgressStartPoint;
 import com.natasa.progressviews.utils.ShapeType;
 
 public class ArcProgressBar extends ProgressView {
@@ -74,7 +71,7 @@ public class ArcProgressBar extends ProgressView {
 
 	private void setLinearGradientPaint() {
 		if (isGradientColor)
-			ColorsHelper.setGradientPaint(foregroundPaint, left, top, right, top);
+			colorHelper.setGradientPaint(foregroundPaint, left, top, right, top);
 	}
 
 	@Override

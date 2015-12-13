@@ -28,14 +28,10 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Build;
-import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 
-import com.natasa.progressviews.utils.ColorsHelper;
 import com.natasa.progressviews.utils.OnProgressViewListener;
 import com.natasa.progressviews.utils.ProgressShape;
 import com.natasa.progressviews.utils.ProgressStartPoint;
@@ -250,46 +246,7 @@ abstract class ProgressView extends View implements ProgressShape {
 		requestLayout();
 	}
 
-	public boolean isShadowInBackground() {
-		return isShadow_background;
-	}
 
-	public void setShadowInBackground(boolean isShadow_background) {
-		this.isShadow_background = isShadow_background;
-		init();
-
-	}
-	public void setShadowInBackground(boolean isShadow_background, String hexColor) {
-		this.isShadow_background = isShadow_background;
-		convertStringToIntColor(hexColor);
-		init();
-
-	}
-
-
-
-	public boolean isShadowInProgress() {
-		return isShadow_progress;
-	}
-	public void setShadowInProgress(boolean isShadow_progress, String hexColor) {
-		this.isShadow_progress = isShadow_progress;
-		convertStringToIntColor(hexColor);
-		init();
-
-	}
-	public void setShadowInProgress(boolean isShadow_progress) {
-		this.isShadow_progress = isShadow_progress;
-		init();
-	}
-	private void convertStringToIntColor(String hexColor) {
-		if(hexColor!=null) {
-			try {
-				this.shaderColor = Color.parseColor(hexColor);
-
-			}catch (Exception e){e.printStackTrace();}
-
-		}
-	}
 // ***********************ANIMATOR**********************************************
 
 	/**
@@ -428,15 +385,56 @@ abstract class ProgressView extends View implements ProgressShape {
 
 	protected void drawText(Canvas canvas) {
 		if (text_data.isWithText)
-			ColorsHelper.drawTextCenter(canvas, text_data.progressText,
+			colorHelper.drawTextCenter(canvas, text_data.progressText,
 					text_data.textColor, min);
 
 	}
 	protected void drawTextLine(Canvas canvas) {
 		if (text_data.isWithText)
-			ColorsHelper.drawTextCenter(canvas, text_data.progressText,
+			colorHelper.drawTextCenter(canvas, text_data.progressText,
 					text_data.textColor, width);
 
 	}
+//TODO:*******************	SHADOW ***********************
 
+//public boolean isShadowInBackground() {
+	//return isShadow_background;
+	//}
+
+	//public void setShadowInBackground(boolean isShadow_background) {
+	//	this.isShadow_background = isShadow_background;
+	//	init();
+
+	//}
+	//public void setShadowInBackground(boolean isShadow_background, String hexColor) {
+	//this.isShadow_background = isShadow_background;
+	//convertStringToIntColor(hexColor);
+	//	init();
+
+	//}
+
+
+
+	//public boolean isShadowInProgress() {
+	//	return isShadow_progress;
+	//}
+	//public void setShadowInProgress(boolean isShadow_progress, String hexColor) {
+	//	this.isShadow_progress = isShadow_progress;
+	//	convertStringToIntColor(hexColor);
+	//	init();
+
+	//}
+	//public void setShadowInProgress(boolean isShadow_progress) {
+	//	this.isShadow_progress = isShadow_progress;
+	//	init();
+	//}
+	private void convertStringToIntColor(String hexColor) {
+		if(hexColor!=null) {
+			try {
+				this.shaderColor = Color.parseColor(hexColor);
+
+			}catch (Exception e){e.printStackTrace();}
+
+		}
+	}
 }

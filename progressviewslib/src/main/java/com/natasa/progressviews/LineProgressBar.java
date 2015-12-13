@@ -22,13 +22,8 @@ package com.natasa.progressviews;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.CornerPathEffect;
-import android.graphics.Paint;
-import android.graphics.RectF;
 import android.util.AttributeSet;
 
-import com.natasa.progressviews.utils.ColorsHelper;
 import com.natasa.progressviews.utils.ProgressLineOrientation;
 import com.natasa.progressviews.utils.ShapeType;
 

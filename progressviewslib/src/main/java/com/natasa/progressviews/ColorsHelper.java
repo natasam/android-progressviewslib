@@ -1,6 +1,6 @@
 
 
-package com.natasa.progressviews.utils;
+package com.natasa.progressviews;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -12,12 +12,12 @@ import android.graphics.Paint.Style;
 import android.graphics.Shader.TileMode;
 import android.graphics.SweepGradient;
 
-public class ColorsHelper {
+ class ColorsHelper {
 	static int[] colors2 = { Color.parseColor("#fb0000"),
 			Color.parseColor("#fbf400"), Color.parseColor("#00FF00") };
 	private boolean isAllowedMatchParent;
 	static int[] colors1;
-	public ColorsHelper() {
+	protected ColorsHelper() {
 	}
 
 	public int[] getColors2() {
@@ -30,13 +30,13 @@ public class ColorsHelper {
 
 	// *******************************GRADIENT
 	// METHODS*****************************
-	public static void setGradientPaint(Paint paint, float left, float top,
+	public  void setGradientPaint(Paint paint, float left, float top,
 			float right, float bottom) {
 
 		setGradientPaint(paint, left, top, right, bottom, colors2);
 	}
 
-	public static void setGradientPaint(Paint paint, float left, float top,
+	public  void setGradientPaint(Paint paint, float left, float top,
 			float right, float bottom, int[] colors2) {
 		LinearGradient linearGradient = new LinearGradient(left, top, right,
 				bottom, colors2, null, TileMode.CLAMP);
@@ -44,7 +44,7 @@ public class ColorsHelper {
 		paint.setAntiAlias(true);
 	}
 
-	public static void setSweepGradientPaint(Paint paint, float width,
+	public  void setSweepGradientPaint(Paint paint, float width,
 											 float height, int colorStart, int colorEnd) {
 		setSweepGradientGradientPaint(paint, width, height, colorStart, colorEnd);
 	}
@@ -58,7 +58,7 @@ public class ColorsHelper {
 
 	// *********************************END OF GRADIENT
 	// METHODS**************************************************
-	public static void drawTextCenter(Canvas canvas, String text, int color,
+	public  void drawTextCenter(Canvas canvas, String text, int color,
 			int min) {
 		Paint innerPaint = new Paint();
 		// innerPaint.setARGB(255, 117, 161, 220); // blue

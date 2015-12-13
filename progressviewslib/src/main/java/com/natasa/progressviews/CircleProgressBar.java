@@ -22,12 +22,9 @@ package com.natasa.progressviews;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 
-import com.natasa.progressviews.utils.ColorsHelper;
 import com.natasa.progressviews.utils.ProgressStartPoint;
 import com.natasa.progressviews.utils.ShapeType;
 
@@ -116,15 +113,15 @@ public class CircleProgressBar extends ProgressView {
 
 	private void setSweepGradPaint() {
 		if (colorStart != 0 && colorEnd != 0) {
-			ColorsHelper.setSweepGradientPaint(foregroundPaint, min / 2, min / 2, colorStart, colorEnd);
+			colorHelper.setSweepGradientPaint(foregroundPaint, min / 2, min / 2, colorStart, colorEnd);
 		}
 	}
 
 	private void setLinearGradientProgress(int[] gradColors) {
 		if(gradColors!=null)
-			ColorsHelper.setGradientPaint(foregroundPaint, left, top, right, bottom,gradColors);
+			colorHelper.setGradientPaint(foregroundPaint, left, top, right, bottom,gradColors);
 		else
-			ColorsHelper.setGradientPaint(foregroundPaint, left, top, right, bottom);
+			colorHelper.setGradientPaint(foregroundPaint, left, top, right, bottom);
 
 	}
 
