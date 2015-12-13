@@ -6,114 +6,115 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
+import android.graphics.RadialGradient;
 import android.graphics.Rect;
 import android.graphics.Paint.Style;
 import android.graphics.Shader.TileMode;
 import android.graphics.SweepGradient;
 
- class ColorsHelper {
-	 public static final float padding = 2f;
-	 static int[] colors2 = { Color.parseColor("#fb0000"),
-			Color.parseColor("#fbf400"), Color.parseColor("#00FF00") };
-	private boolean isAllowedMatchParent;
-	static int[] colors1;
-	protected ColorsHelper() {
-	}
+class ColorsHelper {
+    static int[] colors2 = {Color.parseColor("#fb0000"),
+            Color.parseColor("#fbf400"), Color.parseColor("#00FF00")};
+    private boolean isAllowedMatchParent;
+    static int[] colors1;
 
-	public int[] getColors2() {
-		return colors2;
-	}
+    protected ColorsHelper() {
+    }
 
-	public static void setColors2(int[] colors) {
-		colors1 = colors;
-	}
+    public int[] getColors2() {
+        return colors2;
+    }
 
-	// *******************************GRADIENT
-	// METHODS*****************************
-	public  void setGradientPaint(Paint paint, float left, float top,
-			float right, float bottom) {
+    public static void setColors2(int[] colors) {
+        colors1 = colors;
+    }
 
-		setGradientPaint(paint, left, top, right, bottom, colors2);
-	}
+    // *******************************GRADIENT
+    // METHODS*****************************
+    public void setGradientPaint(Paint paint, float left, float top,
+                                 float right, float bottom) {
 
-	public  void setGradientPaint(Paint paint, float left, float top,
-			float right, float bottom, int[] colors2) {
-		LinearGradient linearGradient = new LinearGradient(left, top, right,
-				bottom, colors2, null, TileMode.CLAMP);
-		paint.setShader(linearGradient);
-		paint.setAntiAlias(true);
-	}
+        setGradientPaint(paint, left, top, right, bottom, colors2);
+    }
 
-	public  void setSweepGradientPaint(Paint paint, float width,
-											 float height, int colorStart, int colorEnd) {
-		setSweepGradientGradientPaint(paint, width, height, colorStart, colorEnd);
-	}
+    public void setGradientPaint(Paint paint, float left, float top,
+                                 float right, float bottom, int[] colors2) {
+        LinearGradient linearGradient = new LinearGradient(left, top, right,
+                bottom, colors2, null, TileMode.CLAMP);
+        paint.setShader(linearGradient);
+        paint.setAntiAlias(true);
+    }
 
-	protected static void setSweepGradientGradientPaint(Paint paint, float width,
-														float height, int colorStart, int colorEnd) {
-		paint.setShader(new SweepGradient(width, height, colorStart, colorEnd));
-		paint.setAntiAlias(true);
-	}
+    public void setSweepGradientPaint(Paint paint, float width,
+                                      float height, int colorStart, int colorEnd) {
+        setSweepGradientGradientPaint(paint, width, height, colorStart, colorEnd);
+    }
 
-	// *********************************END OF GRADIENT
-	// METHODS**************************************************
-	public  void drawTextCenter(Canvas canvas, String text, int color,
-			int min) {
-		Paint innerPaint = new Paint();
-		innerPaint.setAntiAlias(true);
-		innerPaint.setStyle(Style.FILL);
-		innerPaint.setColor(color);
-		innerPaint.setTextSize(48);
-		// int cHeight = canvas.getClipBounds().height();
-		// int cWidth = canvas.getClipBounds().width();
-		Rect r = new Rect();
-		// setTextMatchParent(text,innerPaint,width-strokeWidth*2-25);
-		innerPaint.setTextAlign(Paint.Align.LEFT);
-		innerPaint.getTextBounds(text, 0, text.length(), r);
-		float x = min / padding - r.width() / padding - r.left;
-		float y = min / padding + r.height() / padding - r.bottom;
+    protected static void setSweepGradientGradientPaint(Paint paint, float width,
+                                                        float height, int colorStart, int colorEnd) {
+        paint.setShader(new SweepGradient(width, height, colorStart, colorEnd));
+        paint.setAntiAlias(true);
+    }
 
-		canvas.drawText(text, x, y, innerPaint);
-	}
+    // *********************************END OF GRADIENT
+    // METHODS**************************************************
+    public void drawTextCenter(Canvas canvas, String text, int color, int size,
+                               int min) {
+        Paint innerPaint = new Paint();
+        innerPaint.setAntiAlias(true);
+        innerPaint.setStyle(Style.FILL);
+        innerPaint.setColor(color);
+        innerPaint.setTextSize(size);
+        // int cHeight = canvas.getClipBounds().height();
+        // int cWidth = canvas.getClipBounds().width();
+        Rect r = new Rect();
+        // setTextMatchParent(text,innerPaint,width-strokeWidth*2-25);
+        innerPaint.setTextAlign(Paint.Align.LEFT);
+        innerPaint.getTextBounds(text, 0, text.length(), r);
+        float x = min / 2f - r.width() / 2f - r.left;
+        float y = min / 2f + r.height() / 2f - r.bottom;
 
-	private void setTextMatchParent(String text, Paint paint, float desiredWidth) {
-		calculateTextlength(text);
-		if (isAllowedMatchParent) {
-			setTextSizeForWidth(text, paint, desiredWidth);
-		}
-	}
+        canvas.drawText(text, x, y, innerPaint);
+    }
 
-	private void calculateTextlength(String text) {
-		int textLength = text.length();
-		if (textLength > 4) {
-			isAllowedMatchParent = true;
-		} else {
-			final float testTextSize = 38f;
-		}
-	}
+    private void setTextMatchParent(String text, Paint paint, float desiredWidth) {
+        calculateTextlength(text);
+        if (isAllowedMatchParent) {
+            setTextSizeForWidth(text, paint, desiredWidth);
+        }
+    }
 
-	private static void setTextSizeForWidth(String text, Paint paint,
-			float desiredWidth) {
+    private void calculateTextlength(String text) {
+        int textLength = text.length();
+        if (textLength > 4) {
+            isAllowedMatchParent = true;
+        } else {
+            final float testTextSize = 38f;
+        }
+    }
 
-		final float testTextSize = 48f;
-		paint.setTextSize(testTextSize);
-		Rect bounds = new Rect();
-		paint.getTextBounds(text, 0, text.length(), bounds);
-		float desiredTextSize = testTextSize * desiredWidth / bounds.width();
-		paint.setTextSize(desiredTextSize);
-	}
+    private static void setTextSizeForWidth(String text, Paint paint,
+                                            float desiredWidth) {
 
-	@Deprecated
-	private void drawText(String text, Canvas canvas) {
-		Paint innerPaint = new Paint();
-		innerPaint.setAntiAlias(true);
-		innerPaint.setStyle(Style.FILL);
-		innerPaint.setColor(Color.BLACK);
-		int xPos = (canvas.getWidth() / 2);
-		int yPos = (int) ((canvas.getHeight() / 2) - ((innerPaint.descent() + innerPaint
-				.ascent()) / 2));
+        final float testTextSize = 48f;
+        paint.setTextSize(testTextSize);
+        Rect bounds = new Rect();
+        paint.getTextBounds(text, 0, text.length(), bounds);
+        float desiredTextSize = testTextSize * desiredWidth / bounds.width();
+        paint.setTextSize(desiredTextSize);
+    }
 
-		canvas.drawText(text, xPos, yPos, innerPaint);
-	}
+    @Deprecated
+    private void drawText(String text, Canvas canvas) {
+        Paint innerPaint = new Paint();
+        innerPaint.setAntiAlias(true);
+        innerPaint.setStyle(Style.FILL);
+        innerPaint.setColor(Color.BLACK);
+        int xPos = (canvas.getWidth() / 2);
+        int yPos = (int) ((canvas.getHeight() / 2) - ((innerPaint.descent() + innerPaint
+                .ascent()) / 2));
+
+        canvas.drawText(text, xPos, yPos, innerPaint);
+    }
 
 }
